@@ -3,6 +3,11 @@
 
 title = "azure-tf-demo gitleaks config"
 
+# gitleaks only merges the built-in ruleset through [extend]; a config that defines
+# no [[rules]] of its own would otherwise scan with zero rules and always pass.
+[extend]
+  useDefault = true
+
 [allowlist]
   description = "Global allowlist"
   paths = [

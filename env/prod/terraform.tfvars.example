@@ -1,0 +1,18 @@
+# Prod environment inputs.
+# Copy to env/prod/terraform.tfvars (gitignored) and replace the placeholders.
+# Never put secrets here — sensitive values belong in Key Vault (issue #5).
+
+subscription_id     = "00000000-0000-0000-0000-000000000000" # Prod subscription
+environment         = "prod"
+location            = "westeurope"
+resource_group_name = "rg-prod-network"
+vnet_name           = "vnet-prod"
+
+# Disjoint from the Dev range so the two networks stay peerable without renumbering.
+address_space = ["10.1.0.0/16"]
+
+owner = "your-name"
+
+tags = {
+  Repository = "https://github.com/desombre/azure-tf-demo"
+}

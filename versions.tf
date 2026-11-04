@@ -1,0 +1,13 @@
+terraform {
+  required_version = ">= 1.5.0"
+
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 5.12"
+    }
+  }
+
+  # Remote state lives in a dedicated Storage Account — see issue #1.
+  # backend "azurerm" {}
+}
