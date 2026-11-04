@@ -1,0 +1,18 @@
+# Dev environment inputs.
+# Copy to env/dev/terraform.tfvars (gitignored) and replace the placeholders.
+# Never put secrets here — sensitive values belong in Key Vault (issue #5).
+
+subscription_id     = "00000000-0000-0000-0000-000000000000" # Dev subscription
+environment         = "dev"
+location            = "westeurope"
+resource_group_name = "rg-dev-network"
+vnet_name           = "vnet-dev"
+
+# Single /16 leaves room for the AKS and private-endpoint subnets in issue #9.
+address_space = ["10.0.0.0/16"]
+
+owner = "your-name"
+
+tags = {
+  Repository = "https://github.com/desombre/azure-tf-demo"
+}
