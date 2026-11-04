@@ -1,0 +1,11 @@
+# Gitleaks configuration for azure-tf-demo
+# Docs: https://github.com/gitleaks/gitleaks/blob/master/README.md
+
+title = "azure-tf-demo gitleaks config"
+
+[allowlist]
+  description = "Global allowlist"
+  paths = [
+    '''\.gitleaks\.toml''',
+    '''LICENSE''',
+  ]
