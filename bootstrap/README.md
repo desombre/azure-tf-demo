@@ -27,7 +27,7 @@ your own suffix.
   container only, not the account or the subscription. Add the CI workload identity's object ID here
   when issue #8 defines it; the identity Terraform runs as cannot read or write state without it.
 - **Public network access stays on.** The state account must be reachable before issue #4 builds
-  private endpoints, so `public_network_access_enabled = true` with anonymous access off
+  private endpoints, so `public_network_access = "Enabled"` with anonymous access off
   (`allow_nested_items_to_be_public = false`, private container). Revisit once private endpoints exist.
 - **Versioning + soft delete.** Blob versioning is on and both blob and container soft-delete
   retention is `retention_days` (default 30), giving a recovery window for corrupted state.

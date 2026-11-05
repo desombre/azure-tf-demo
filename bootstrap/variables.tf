@@ -56,9 +56,11 @@ variable "replication_type" {
   type        = string
   default     = "LRS"
 
+  # Mirrors the provider's own ValidateFunc set. RA_GRS is the Azure REST API name, not the
+  # provider's — azurerm rejects it and expects RAGZRS instead.
   validation {
-    condition     = contains(["LRS", "GRS", "GZRS", "RAGRS", "RA_GRS", "ZRS"], upper(var.replication_type))
-    error_message = "replication_type must be one of LRS, GRS, GZRS, RAGRS, RA_GRS, ZRS."
+    condition     = contains(["LRS", "ZRS", "GRS", "RAGRS", "GZRS", "RAGZRS"], upper(var.replication_type))
+    error_message = "replication_type must be one of LRS, ZRS, GRS, RAGRS, GZRS, RAGZRS."
   }
 }
 
