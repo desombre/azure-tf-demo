@@ -11,6 +11,14 @@ vnet_name           = "vnet-prod"
 # Disjoint from the Dev range so the two networks stay peerable without renumbering.
 address_space = ["10.1.0.0/16"]
 
+# Subnets must sit inside address_space and never overlap each other.
+# Prod AKS pools are larger, so the subnet is a /22 instead of Dev's /24.
+aks_subnet_address_prefixes               = ["10.1.1.0/22"]
+private_endpoints_subnet_address_prefixes = ["10.1.4.0/24"]
+
+# Baseline Private Link rules are built into the stack; only add deltas here.
+pe_nsg_extra_rules = []
+
 owner = "your-name"
 
 tags = {

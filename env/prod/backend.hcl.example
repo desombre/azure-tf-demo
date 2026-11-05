@@ -1,0 +1,14 @@
+# Prod backend — copy to env/prod/backend.hcl (gitignored) and fill in from the bootstrap
+# stack run with environment = "prod".
+#
+# No secrets belong in this file. The backend authenticates with Entra ID from your
+# environment (az login, ARM_CLIENT_ID/SECRET, or CI OIDC), so there is no access key.
+
+resource_group_name  = "rg-prod-tfstate"
+storage_account_name = "aztfstateexampleprod"
+container_name       = "tfstate"
+
+# Names the blob after the environment so a misplaced backend.hcl cannot aim Prod at Dev state.
+key = "prod/terraform.tfstate"
+
+use_azuread_auth = true
