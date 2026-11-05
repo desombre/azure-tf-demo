@@ -1,0 +1,14 @@
+# Dev backend — copy to env/dev/backend.hcl (gitignored) and fill in from:
+#   terraform -chdir=bootstrap output backend_values
+#
+# No secrets belong in this file. The backend authenticates with Entra ID from your
+# environment (az login, ARM_CLIENT_ID/SECRET, or CI OIDC), so there is no access key.
+
+resource_group_name  = "rg-dev-tfstate"
+storage_account_name = "aztfstateexample"
+container_name       = "tfstate"
+
+# Names the blob after the environment so a misplaced backend.hcl cannot aim Dev at Prod state.
+key = "dev/terraform.tfstate"
+
+use_azuread_auth = true

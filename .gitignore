@@ -16,6 +16,10 @@ crash.*.log
 *.tfvars
 *.tfvars.json
 
+# Backend config copied from env/*/*.hcl.example — per-environment and machine specific,
+# so only the templates are tracked.
+env/*/backend.hcl
+
 # Ignore override files as they are usually used to override resources locally and so
 # are not checked in
 override.tf

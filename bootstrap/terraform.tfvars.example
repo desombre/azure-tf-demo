@@ -1,0 +1,22 @@
+# Inputs for the state-backend bootstrap stack.
+# Copy to bootstrap/terraform.tfvars (gitignored) and replace the placeholders.
+# This stack keeps local state on purpose — it creates the account every other stack uses.
+
+subscription_id     = "00000000-0000-0000-0000-000000000000" # Dev subscription
+environment         = "dev"
+location            = "westeurope"
+resource_group_name = "rg-dev-tfstate"
+
+# Globally unique across all of Azure: 3-24 lowercase letters/digits. Yours will almost
+# certainly need a personal suffix, so treat the "example" part as a placeholder.
+storage_account_name = "aztfstateexample"
+
+container_name = "tfstate"
+retention_days = 30
+
+# Object IDs that must be able to read/write state. Add your own Entra ID object ID here unless
+# you are Owner or User Access Administrator on the subscription — Contributor alone cannot write
+# blobs, so state pushes would 403. Add the CI workload identity when issue #8 defines it.
+contributor_principal_ids = []
+
+owner = "your-name"

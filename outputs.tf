@@ -22,3 +22,33 @@ output "address_space" {
   description = "Address space allocated to the virtual network."
   value       = module.vnet.address_space
 }
+
+output "aks_subnet_id" {
+  description = "Resource ID of the AKS subnet — pass it to azurerm_kubernetes_network_profile.subnet_id in issue #7."
+  value       = module.aks_subnet.subnet_id
+}
+
+output "aks_subnet_name" {
+  description = "Name of the AKS subnet."
+  value       = module.aks_subnet.subnet_name
+}
+
+output "private_endpoints_subnet_id" {
+  description = "Resource ID of the private endpoints subnet — target for subnet_id in issue #4 private endpoints."
+  value       = module.private_endpoints_subnet.subnet_id
+}
+
+output "private_endpoints_subnet_name" {
+  description = "Name of the private endpoints subnet."
+  value       = module.private_endpoints_subnet.subnet_name
+}
+
+output "private_endpoints_nsg_id" {
+  description = "Resource ID of the NSG guarding the private endpoints subnet."
+  value       = module.private_endpoints_nsg.network_security_group_id
+}
+
+output "private_endpoints_subnet_nsg_id" {
+  description = "NSG attached to the private endpoints subnet as Azure reports it — should equal private_endpoints_nsg_id."
+  value       = module.private_endpoints_subnet.associated_network_security_group_id
+}

@@ -8,8 +8,25 @@ location            = "westeurope"
 resource_group_name = "rg-dev-network"
 vnet_name           = "vnet-dev"
 
-# Single /16 leaves room for the AKS and private-endpoint subnets in issue #9.
+# Single /16 holds both subnets below with room for a third if the design grows.
 address_space = ["10.0.0.0/16"]
+
+# Subnets must sit inside address_space and never overlap each other.
+# The AKS subnet needs at least a /23 for Azure CNI per node pool.
+aks_subnet_address_prefixes             = ["10.0.1.0/24"]
+private_endpoints_subnet_address_prefixes = ["10.0.2.0/24"]
+
+# The Private Link baseline rules (443 from the VNet, 443 for load balancer probes) are
+# built into the stack. Add environment-specific rules here, priority 200 and above:
+# pe_nsg_extra_rules = [{
+#   name                    = "Allow-Storage-Replication-Inbound"
+#   priority                = 200
+#   direction               = "Inbound"
+#   access                  = "Allow"
+#   protocol                = "Tcp"
+#   source_address_prefixes = ["10.0.3.0/24"]
+#   destination_port_range  = "443"
+# }]
 
 owner = "your-name"
 

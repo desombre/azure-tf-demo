@@ -1,5 +1,7 @@
 terraform {
-  required_version = ">= 1.5.0"
+  # 1.9 is the first release whose input variable validations may reference other variables,
+  # which the subnet overlap check relies on.
+  required_version = ">= 1.9.0"
 
   required_providers {
     azurerm = {
@@ -7,7 +9,4 @@ terraform {
       version = "~> 5.12"
     }
   }
-
-  # Remote state lives in a dedicated Storage Account — see issue #1.
-  # backend "azurerm" {}
 }
