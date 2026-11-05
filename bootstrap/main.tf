@@ -17,12 +17,14 @@ resource "azurerm_resource_group" "state" {
 }
 
 resource "azurerm_storage_account" "state" {
-  name                     = var.storage_account_name
-  resource_group_name      = azurerm_resource_group.state.name
-  location                 = azurerm_resource_group.state.location
-  account_tier             = "Standard"
-  account_kind             = "StorageV2"
-  account_replication_type = var.replication_type
+  name                = var.storage_account_name
+  resource_group_name = azurerm_resource_group.state.name
+  location            = azurerm_resource_group.state.location
+  account_tier        = "Standard"
+  account_kind        = "StorageV2"
+  # The provider's ValidateFunc for this field is case-sensitive, so the value is normalised
+  # here rather than trusting the caller's casing.
+  account_replication_type = upper(var.replication_type)
 
   min_tls_version            = "TLS1_2"
   https_traffic_only_enabled = true

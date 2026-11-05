@@ -46,7 +46,7 @@ terraform -chdir=bootstrap output backend_values                   # feeds the n
 State lives in Azure Blob Storage with native blob-lease locking, supplied per environment at init time (a `backend` block cannot read variables):
 
 ```bash
-cp env/dev/backend.hcl.example env/dev/backend.hcl                 # paste storage_account_name from bootstrap
+cp env/dev/backend.hcl.example env/dev/backend.hcl                 # paste storage_account_name from bootstrap, set subscription_id
 terraform init -backend-config=env/dev/backend.hcl
 terraform validate
 terraform plan  -var-file=env/dev/terraform.tfvars
